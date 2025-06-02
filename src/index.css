@@ -1,0 +1,477 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  /*GitHub Dark theme with some enhancements*/
+  --color-bg-primary: #0d1117;
+  --color-bg-secondary: #161b22;
+  --color-border: #30363d;
+  --color-text-primary: #c9d1d9;
+  --color-text-secondary: #8b949e;
+  --color-accent: #58a6ff;
+  --color-accent-hover: #79c0ff;
+  --color-accent-bg: rgba(56, 139, 253, 0.15);
+  --color-accent-subtle: rgba(56, 139, 253, 0.08);
+  --color-header-bg: #161b22;
+  --color-header-text: #f0f6fc;
+  --color-link: #58a6ff;
+  --color-link-hover: #79c0ff;
+  --shadow-sm: 0 1px 2px rgba(1, 4, 9, 0.3);
+  --shadow-md: 0 3px 6px rgba(1, 4, 9, 0.3), 0 1px 3px rgba(1, 4, 9, 0.1);
+  --shadow-lg: 0 8px 24px rgba(1, 4, 9, 0.4), 0 2px 8px rgba(1, 4, 9, 0.2);
+  --shadow-highlight: 0 0 15px rgba(56, 139, 253, 0.15);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --transition-default: all 0.2s ease-in-out;
+  --max-width-container: 1200px;
+
+  color-scheme: dark;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-bg-primary);
+  /* Removing the weird dot pattern background */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--color-link);
+  text-decoration: none;
+  transition: var(--transition-default);
+  position: relative;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-link-hover);
+  transition: var(--transition-default);
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header styling */
+header {
+  background-color: var(--color-header-bg);
+  color: var(--color-header-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border);
+  width: 100vw;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-md);
+  left: 0;
+  right: 0;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 1000;
+  letter-spacing: -0.001em;
+  text-align: center;
+  background: linear-gradient(135deg, #fff 0%, #79c0ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  max-width: var(--max-width-container);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header-icon {
+  font-size: 1.5rem;
+  margin-right: 8px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+header img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(1.5) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+  animation: pulse 3s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.8; transform: scale(1); }
+}
+
+.star-icon {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 1.2rem;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.7; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Main content container */
+.container {
+  padding: 32px;
+  width: 100%;
+  max-width: var(--max-width-container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  gap: 28px;
+}
+
+/* Journal entry card styling */
+.journal-entry {
+  display: flex;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: var(--transition-default);
+  width: 100%;
+  padding: 0;
+  height: 100%;
+}
+
+.journal-entry:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), var(--shadow-highlight);
+  border-color: rgba(56, 139, 253, 0.4);
+}
+
+.main-image-container {
+  width: 200px;
+  height: 100%;
+  min-height: 260px;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease-out;
+}
+
+.journal-entry:hover .main-image {
+  transform: scale(1.08);
+}
+
+.main-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(22, 27, 34, 0.6), transparent);
+  pointer-events: none;
+}
+
+/* Content container */
+.info-container {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0; /* Fix text overflow issues */
+  position: relative;
+  overflow: hidden;
+}
+
+.info-container::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, var(--color-accent-subtle) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.journal-entry:hover .info-container::before {
+  opacity: 1;
+}
+
+.location-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.location-pin {
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.country {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-right: 16px;
+  position: relative;
+  padding-right: 16px;
+}
+
+.country::after {
+  content: "•";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-border);
+  font-size: 0.8rem;
+}
+
+.info-container a {
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: var(--color-accent-bg);
+  color: var(--color-accent);
+  border: 1px solid rgba(56, 139, 253, 0.3);
+  margin-left: auto;
+  transition: var(--transition-default);
+  display: inline-flex;
+  align-items: center;
+}
+
+.info-container a:hover {
+  background-color: rgba(56, 139, 253, 0.25);
+  border-color: rgba(56, 139, 253, 0.5);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+}
+
+.info-container a:hover::after {
+  width: 0; /* Override the default link underline on hover */
+}
+
+.entry-title {
+  margin: 0 0 14px;
+  font-size: 1.8rem;
+  color: var(--color-text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  transition: var(--transition-default);
+}
+
+.journal-entry:hover .entry-title {
+  color: #fff;
+}
+.entry-text {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+  font-size: 1rem;
+  overflow-wrap: break-word;
+  position: relative;
+  padding-left: 1px;
+}
+
+@media (max-width: 1280px) {
+  .container {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .journal-entry {
+    flex-direction: column;
+  }
+
+  .main-image-container {
+    width: 100%;
+    height: 220px;
+    min-height: auto;
+  }
+
+  .main-image-container::after {
+    background: linear-gradient(to top, rgba(22, 27, 34, 0.6), transparent);
+  }
+
+  .info-container {
+    padding: 24px;
+  }
+
+  .location-info {
+    flex-wrap: wrap;
+  }
+
+  .info-container a {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .entry-title {
+    font-size: 1.5rem;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+
+  header {
+    padding: 15px;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  .entry-title {
+    font-size: 1.3rem;
+  }
+
+  .entry-text {
+    font-size: 0.95rem;
+  }
+
+  .info-container {
+    padding: 20px;
+  }
+}
+
+/* CSS-only animated background dots */
+.background-dots {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Behind other content */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.background-dots span {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(88, 166, 255, 0.4); /* GitHub blue with some transparency */
+  width: 5px; /* Dot size */
+  height: 5px; /* Dot size */
+  opacity: 0;
+  animation: move-dot 20s linear infinite, fadeInOut 20s linear infinite;
+}
+
+@keyframes move-dot {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(calc(var(--random-x) * 1px), calc(var(--random-y) * 1px));
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  10%, 90% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Assign random positions and animation delays/properties to each dot */
+.background-dots span:nth-child(1)  { left: 10%; top: 20%; animation-delay: 0s; --random-x: 50; --random-y: -30; }
+.background-dots span:nth-child(2)  { left: 20%; top: 80%; animation-delay: -18s; --random-x: -40; --random-y: 60; }
+.background-dots span:nth-child(3)  { left: 30%; top: 30%; animation-delay: -2s; --random-x: 30; --random-y: 50; }
+.background-dots span:nth-child(4)  { left: 40%; top: 70%; animation-delay: -16s; --random-x: -60; --random-y: -20; }
+.background-dots span:nth-child(5)  { left: 50%; top: 10%; animation-delay: -4s; --random-x: 20; --random-y: 70; }
+.background-dots span:nth-child(6)  { left: 60%; top: 90%; animation-delay: -14s; --random-x: -50; --random-y: -40; }
+.background-dots span:nth-child(7)  { left: 70%; top: 40%; animation-delay: -6s; --random-x: 70; --random-y: 30; }
+.background-dots span:nth-child(8)  { left: 80%; top: 60%; animation-delay: -12s; --random-x: -20; --random-y: -60; }
+.background-dots span:nth-child(9)  { left: 90%; top: 25%; animation-delay: -8s; --random-x: 40; --random-y: 40; }
+.background-dots span:nth-child(10) { left: 5%;  top: 50%; animation-delay: -10s; --random-x: -70; --random-y: 20; }
+.background-dots span:nth-child(11) { left: 15%; top: 75%; animation-delay: -1.5s; --random-x: 60; --random-y: -50; }
+.background-dots span:nth-child(12) { left: 25%; top: 15%; animation-delay: -17.5s; --random-x: -30; --random-y: 70; }
+.background-dots span:nth-child(13) { left: 35%; top: 85%; animation-delay: -3.5s; --random-x: 50; --random-y: -20; }
+.background-dots span:nth-child(14) { left: 45%; top: 5%;  animation-delay: -15.5s; --random-x: -60; --random-y: 60; }
+.background-dots span:nth-child(15) { left: 55%; top: 65%; animation-delay: -5.5s; --random-x: 30; --random-y: -70; }
+.background-dots span:nth-child(16) { left: 65%; top: 35%; animation-delay: -13.5s; --random-x: -40; --random-y: 50; }
+.background-dots span:nth-child(17) { left: 75%; top: 95%; animation-delay: -7.5s; --random-x: 70; --random-y: -30; }
+.background-dots span:nth-child(18) { left: 85%; top: 45%; animation-delay: -11.5s; --random-x: -20; --random-y: 40; }
+.background-dots span:nth-child(19) { left: 95%; top: 10%; animation-delay: -9.5s; --random-x: 60; --random-y: -60; }
+.background-dots span:nth-child(20) { left: 2%;  top: 60%; animation-delay: -0.5s; --random-x: -50; --random-y: 30; }
+.background-dots span:nth-child(21) { left: 12%; top: 20%; animation-delay: -19s; --random-x: 40; --random-y: -70; }
+.background-dots span:nth-child(22) { left: 22%; top: 70%; animation-delay: -1s; --random-x: -70; --random-y: 50; }
+.background-dots span:nth-child(23) { left: 32%; top: 10%; animation-delay: -17s; --random-x: 30; --random-y: 60; }
+.background-dots span:nth-child(24) { left: 42%; top: 90%; animation-delay: -3s; --random-x: -60; --random-y: -40; }
+.background-dots span:nth-child(25) { left: 52%; top: 30%; animation-delay: -15s; --random-x: 50; --random-y: 70; }
+.background-dots span:nth-child(26) { left: 62%; top: 80%; animation-delay: -5s; --random-x: -30; --random-y: -50; }
+.background-dots span:nth-child(27) { left: 72%; top: 20%; animation-delay: -13s; --random-x: 70; --random-y: 40; }
+.background-dots span:nth-child(28) { left: 82%; top: 70%; animation-delay: -7s; --random-x: -50; --random-y: -20; }
+.background-dots span:nth-child(29) { left: 92%; top: 40%; animation-delay: -11s; --random-x: 20; --random-y: 60; }
+.background-dots span:nth-child(30) { left: 8%;  top: 5%; animation-delay: -9s; --random-x: -40; --random-y: -70; }
+
+
+
+
+
