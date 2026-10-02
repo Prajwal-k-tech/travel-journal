@@ -12,7 +12,6 @@ export default function Entry(props) {//usage of props
             </div>
             <div className="info-container">
                 <div className="location-info">
-                    <span className="location-pin" aria-hidden="true">📍</span>
                     <span className="country">{props.country}</span>
                     <a href={props.googleMapsLink} target="_blank" rel="noopener noreferrer">View on Google Maps</a>
                 </div>

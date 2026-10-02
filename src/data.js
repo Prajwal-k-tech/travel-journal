@@ -3,7 +3,7 @@ export default [
         id: 1,
         img: {
             src: "https://i.imgur.com/6OLNsvW.jpeg",
-            alt: "Mount Fuji"
+            alt: "Mehrangarh Fort"
         },
         title: "Mehrangarh Fort",
         country: "India",
